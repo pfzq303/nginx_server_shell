@@ -84,7 +84,7 @@ function docker_init() {
     mkdir -p /home/docker-nginx-${fileFolder}/file
     mkdir -p /home/docker-nginx-${fileFolder}/log
     echo "hello nginx-${fileFolder}" > /home/docker-nginx-${fileFolder}/file/index.html
-    docker run -itd --name nginx-${fileFolder} -p 8899:80 -v /home/docker-nginx-${fileFolder}/file:/usr/share/nginx/html -v /home/docker-nginx-${fileFolder}/log:/var/log/nginx nginx
+    docker run -itd --name nginx-${fileFolder} -p 80:80 -v /home/docker-nginx-${fileFolder}/file:/usr/share/nginx/html -v /home/docker-nginx-${fileFolder}/log:/var/log/nginx nginx
 }
 
 function get_my_ip(){
@@ -106,10 +106,10 @@ function success_info(){
     echo -e "------------------------"
     echo -e "# 访问日志输出文件位置在:$(__green " /home/docker-nginx-${fileFolder}/log") 目录下"
     echo -e "------------------------"
-	echo -e "# 注意: $(__red "云服务安全组需开启8899端口。需将公网ip提供给我们，ip用于配置到域名供应商。")"
+	echo -e "# 注意: $(__red "云服务安全组需开启80端口。需将公网ip提供给我们，ip用于配置到域名供应商。")"
     echo -e "------------------------"
-    echo -e "# 远程地址:$(__green "curl http://${IP}:8899")，测试是否有内容。"
-    echo -e "# 局域网地址:$(__green "curl http://${localIP}:8899")，测试是否有内容。"
+    echo -e "# 远程地址:$(__green "curl http://${IP}")，测试是否有内容。"
+    echo -e "# 局域网地址:$(__green "curl http://${localIP}")，测试是否有内容。"
     echo -e "#############################################################"
     echo -e ""
 }
